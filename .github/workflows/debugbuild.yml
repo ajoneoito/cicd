@@ -36,5 +36,7 @@ jobs:
         env:
           GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GCHAT_WEBHOOK }}
         run: |
-          ARTIFACT_URL=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"text\": \"Artifact link: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/-/jobs/$GITHUB_RUN_ID/artifacts/$ARTIFACT_NAME/app-release.apk\"}" $GOOGLE_CHAT_WEBHOOK_URL)
-          echo "Artifact URL: $ARTIFACT_URL"
+          ARTIFACT_URL=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"text\": \"Artifact link: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/cicd/suites/$GITHUB_WORKFLOW_ID/artifacts/$GITHUB_RUN_ID\"}" $GOOGLE_CHAT_WEBHOOK_URL)
+          echo "Android Build : $ARTIFACT_URL"
+          
+          
