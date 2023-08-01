@@ -19,3 +19,20 @@ jobs:
         with:
           name: app-release.apk
           path: android/app/build/outputs/apk/release/
+  send_to_google_chat:
+    name: Send to Google Chat
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: path/to/your/artifact
+      - name: Send Artifact to Google Chat
+        env:
+          GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GCHAT_WEBHOOK }}
+        run: |
+          ARTIFACT_URL=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"text\": \"Artifact link: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/-/jobs/$GITHUB_RUN_ID/artifacts/$ARTIFACT_NAME\"}" $GCHAT_WEBHOOK)
+          echo "Artifact URL: $ARTIFACT_URL"
