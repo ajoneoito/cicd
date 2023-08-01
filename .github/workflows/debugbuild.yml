@@ -20,6 +20,7 @@ jobs:
           name: app-release.apk
           path: android/app/build/outputs/apk/release/
   send_to_google_chat:
+    needs: build-android
     name: Send to Google Chat
     runs-on: ubuntu-latest
     steps:
