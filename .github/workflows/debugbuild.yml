@@ -4,36 +4,39 @@ on:
     branches:
       - qa
 jobs:
-  build-android:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          npm install
-      - name: Build Android Release
-        run: |
-          cd android && ./gradlew assembleRelease
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: app-release.apk
-          path: android/app/build/outputs/apk/release/
+#   build-android:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Install npm dependencies
+#         run: |
+#           npm install
+#       - name: Build Android Release
+#         run: |
+#           cd android && ./gradlew assembleRelease
+#       - name: Upload Artifact
+#         uses: actions/upload-artifact@v1
+#         with:
+#           name: app-release.apk
+#           path: android/app/build/outputs/apk/release/
   send_to_google_chat:
-    needs: build-android
+#     needs: build-android
     name: Send to Google Chat
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: https://github.com/ajoneoito/cicd/suites/14734687580/artifacts/837232633
-      - name: Send Artifact to Google Chat
-        env:
-          GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GCHAT_WEBHOOK }}
+      - name: Show Run ID
         run: |
-          ARTIFACT_URL=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"text\": \"Artifact link: https://github.com/ajoneoito/-/jobs/$GITHUB_RUN_ID/artifacts/app-release.apk\"}" $GCHAT_WEBHOOK)
-          echo "Artifact URL: $ARTIFACT_URL"
+          echo "The current workflow run ID is $GITHUB_RUN_ID"
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Upload Artifact
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: test-results
+#           path: https://github.com/ajoneoito/cicd/suites/14734687580/artifacts/837232633
+#       - name: Send Artifact to Google Chat
+#         env:
+#           GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GCHAT_WEBHOOK }}
+#         run: |
+#           ARTIFACT_URL=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"text\": \"Artifact link: https://github.com/ajoneoito/-/jobs/$GITHUB_RUN_ID/artifacts/app-release.apk\"}" $GCHAT_WEBHOOK)
+#           echo "Artifact URL: $ARTIFACT_URL"
