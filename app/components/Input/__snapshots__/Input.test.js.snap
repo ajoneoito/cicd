@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View>
+  <TextInput
+    placeholder="something"
+    style={
+      {
+        "borderColor": "grey",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
+        "marginVertical": 8,
+        "padding": 12,
+      }
+    }
+  />
+</View>
+`;
