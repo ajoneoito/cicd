@@ -1,0 +1,4 @@
+{
+    "name": "prcheck",
+    "description": "Run Unit Tests and lint check"
+}

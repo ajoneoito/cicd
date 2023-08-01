@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Unit Tests
+    name: PR Check
     runs-on: ubuntu-latest
 
     steps:
@@ -24,3 +24,6 @@ jobs:
 
       - name: Run unit tests
         run: npm run test
+
+      - name: Run unit tests
+        run: npm run lint
