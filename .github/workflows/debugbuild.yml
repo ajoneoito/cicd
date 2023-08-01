@@ -34,5 +34,5 @@ jobs:
         env:
           GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GCHAT_WEBHOOK }}
         run: |
-          ARTIFACT_URL=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"text\": \"Artifact link: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/-/jobs/$GITHUB_RUN_ID/artifacts/$ARTIFACT_NAME\"}" $GCHAT_WEBHOOK)
+          ARTIFACT_URL=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"text\": \"Artifact link: https://github.com/ajoneoito/-/jobs/$GITHUB_RUN_ID/artifacts/app-release.apk\"}" $GCHAT_WEBHOOK)
           echo "Artifact URL: $ARTIFACT_URL"
