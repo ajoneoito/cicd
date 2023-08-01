@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-results
-          path: path/to/your/artifact
+          path: https://github.com/ajoneoito/cicd/suites/14734687580/artifacts/837232633
       - name: Send Artifact to Google Chat
         env:
           GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GCHAT_WEBHOOK }}
